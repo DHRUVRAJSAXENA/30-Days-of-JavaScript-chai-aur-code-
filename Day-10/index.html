@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="task1">
+      <p id="para1">this is a para</p>
+      <button id="button1">click me</button>
+    </div>
+
+    <div class="task2">
+      <img
+        id="imageToggle"
+        src="https://i.pinimg.com/236x/1d/2b/c8/1d2bc8101216bc2d86ed2a572d3df244.jpg"
+        alt="img"
+        srcset=""
+      />
+    </div>
+
+    <div
+      id="task3"
+      style="
+        width: 200px;
+        height: 200px;
+        background-color: blueviolet;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <span>this is a div for task 3</span>
+    </div>
+
+    <div id="task4">
+      <input type="text" placeholder="click on any key" id="task4Input" />
+    </div>
+
+    <div id="task5">
+      <input type="text" id="keyupInput" placeholder="Type something" />
+      <p id="displayParagraph"></p>
+    </div>
+
+    <form id="task6">
+      <input type="text" name="username" placeholder="type ur name bitch" />
+      <button type="submit">Dabao bc</button>
+    </form>
+
+    <select id="dropdown">
+      <option value="option 1">1</option>
+      <option value="option 2">2</option>
+      <option value="option 3">3</option>
+    </select>
+    <p id="addOption"></p>
+
+    <ul id="itemList">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+    <div id="parentElement">
+      <button id="addElementButton">Add Element</button>
+    </div>
+
+    <script>
+      // task1
+      document.getElementById("button1").addEventListener("click", () => {
+        let para1 = document.getElementById("para1")
+        if (para1.textContent === "this is a para") {
+          para1.textContent = "para content changed"
+        } else {
+          para1.textContent = "this is a para"
+        }
+      })
+
+      //   task2
+      document
+        .getElementById("imageToggle")
+        .addEventListener("dblclick", function () {
+          this.style.display = this.style.display === "none" ? "block" : "none"
+        })
+
+      document
+        .getElementById("task3")
+        .addEventListener("mouseover", function () {
+          this.style.backgroundColor = "yellow"
+        })
+      document
+        .getElementById("task3")
+        .addEventListener("mouseout", function () {
+          this.style.backgroundColor = "blueviolet"
+        })
+
+      document
+        .getElementById("task4Input")
+        .addEventListener("keydown", function (event) {
+          console.log(event.key)
+        })
+
+      document
+        .getElementById("keyupInput")
+        .addEventListener("keyup", function () {
+          document.getElementById("displayParagraph").textContent = this.value
+        })
+
+      document
+        .getElementById("task6")
+        .addEventListener("submit", function (event) {
+          event.preventDefault()
+          const formData = new FormData(this)
+          formData.forEach((value, key) => {
+            console.log(`${key} : ${value}`)
+          })
+        })
+
+      document
+        .getElementById("dropdown")
+        .addEventListener("change", function () {
+          document.getElementById(
+            "addOption"
+          ).textContent = `You selected option number ${this.value} `
+        })
+
+      document
+        .getElementById("itemList")
+        .addEventListener("click", function (event) {
+          if (event.target && event.target.nodeName === "LI") {
+            console.log("Clicked item:", event.target.textContent)
+          }
+        })
+
+      document
+        .getElementById("addElementButton")
+        .addEventListener("click", () => {
+          const newElement = document.createElement("div")
+          newElement.textContent = "New Element"
+          newElement.classList.add("dynamicElement")
+          document.getElementById("parentElement").appendChild(newElement)
+        })
+
+      document
+        .getElementById("parentElement")
+        .addEventListener("click", function (event) {
+          if (
+            event.target &&
+            event.target.classList.contains("dynamicElement")
+          ) {
+            console.log("dynamic element clicked", event.target.textContent)
+          }
+        })
+    </script>
+  </body>
+</html>
